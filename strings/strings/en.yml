@@ -161,8 +161,8 @@ wspr_5: "You Can't do this"
 # afk
 afk_1: "**No Longer Afk**\n\nWas away for ~ `{}`"
 afk_2: "#AFK\nSet AFK mode to False.\nWas AFK since ~ `{}`"
-afk_3: "**I'm currently AFK.**\nLast seen `{}` ago.\n\n**Reason:** `{}`"
-afk_4: "**I'm currently AFK.**\n\nLast seen `{}` ago."
+afk_3: "**I'm currently Offine.**\nLast seen `{}` ago.\n\n**Reason:** `{}`"
+afk_4: "**I'm currently Offline.**\n\nLast seen `{}` ago."
 afk_5: "**I'm Going AFK.**\n\n**Reason:** `{}`"
 afk_6: "**I'm Going AFK.**"
 
@@ -172,10 +172,8 @@ bot_2: "Stats"
 bot_3: "Repo"
 bot_4: "Support"
 bot_5: "• `Restarting...`"
-alive_1: "**The Ultroid Userbot...**\n\n**{}**\n\n✵ **Owner** - `{}`\n✵ **Ultroid** - `{}`\n✵ **Py-Ultroid** - `{}`\n✵ **UpTime** - `{}`\n✵ **Python** - `{}`\n✵ **Telethon** - `{}`\n✵ **Branch** - `{}`"
-
+alive_1: "**𒆜 Uʟᴛʀᴏɪᴅ✘Sᴜᴘʀᴇᴍᴀᴄʏ**\n\n**{}**\n\n┏━━━━━━━━━━━━━━━━━━\n┣**𒆜 Mᴀsᴛᴇʀ - {}**\n┣**𒆜 Vᴇʀsɪᴏɴ - {}**\n┣**𒆜 UᴘTɪᴍᴇ - {}**\n┣**𒆜 Pʏᴛʜᴏɴ - {}**\n┣**𒆜 Tᴇʟᴇᴛʜᴏɴ - {}**\n┗━━━━━━━━━━━━━━━━━━"
 log: "**Heroku** Ultroid Logs.\nPasted [here]({}) too!"
-
 ping: "**Pong !!** `{}ms`\n**Uptime** - `{}`"
 usage: "**⚙️ Dyno Usage ⚙️**:\n\n-> **Dyno usage for** `{}`:\n  •  **{}h**  **{}m |** `[{}%]`\n-> **Dyno hours quota remaining this month**:\n  •  **{}h**  **{}m |** `[{}%]`\n\n**Total Disk Space**: `{}`\n**Used**: `{}`\n**Free**: `{}`\n\n**📊 Data Usage 📊**\n**Upload**: `{}`\n**Down**: `{}`\n\n**CPU**: `{}%`\n**RAM**: `{}%`\n**DISK**: `{}%`"
 usage_simple: "**Total Disk Space**: `{}`\n**Used**: `{}`\n**Free**: `{}`\n\n**📊 Data Usage 📊**\n**Upload**: `{}`\n**Down**: `{}`\n\n**CPU**: `{}%`\n**RAM**: `{}%`\n**DISK**: `{}%`"
