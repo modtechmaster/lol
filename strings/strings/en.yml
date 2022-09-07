@@ -172,7 +172,7 @@ bot_2: "Stats"
 bot_3: "Repo"
 bot_4: "Support"
 bot_5: "• `Restarting...`"
-alive_1: "**𝕿𝖍𝖊 𝕾𝖕𝖆𝖒𝖝 𝖀𝖘𝖊𝖗𝖇𝖔𝖙...** **Owner** - `{}`\n✵ **UpTime** - `{}`\n✵ 
+alive_1: "**The Ultroid Userbot...**\n\n**{}**\n\n✵ **Owner** - `{}`\n✵ **Ultroid** - `{}`\n✵ **Py-Ultroid** - `{}`\n✵ **UpTime** - `{}`\n✵ **Python** - `{}`\n✵ **Telethon** - `{}`\n✵ **Branch** - `{}`"
 
 log: "**Heroku** Ultroid Logs.\nPasted [here]({}) too!"
 
