@@ -78,13 +78,12 @@ buttons = [
 # Will move to strings
 alive_txt = """
 The Ultroid Userbot
-
   ◍ Version - {}
   ◍ Py-Ultroid - {}
   ◍ Telethon - {}
 """
 
-in_alive = "{}\n\n🌀 <b>Ultroid Version -><b> <code>{}</code>\n🌀 <b>PyUltroid -></b> <code>{}</code>\n🌀 <b>Python -></b> <code>{}</code>\n🌀 <b>Uptime -></b> <code>{}</code>\n🌀 <b>Branch -></b> [ {} ]\n\n• <b>Join @TeamUltroid</b>"
+in_alive =  "**𒆜 Uʟᴛʀᴏɪᴅ✘Sᴜᴘʀᴇᴍᴀᴄʏ**\n\n**{}**\n\n┏━━━━━━━━━━━━━━━━━━━━━\n┣**𒆜 Mᴀsᴛᴇʀ - {}**\n┣**𒆜 Vᴇʀsɪᴏɴ - {}**\n┣**𒆜 UᴘTɪᴍᴇ - {}**\n┣**𒆜 Pʏᴛʜᴏɴ - {}**\n┣**𒆜 Tᴇʟᴇᴛʜᴏɴ - {}**\n┗━━━━━━━━━━━━━━━━━━━━━"
 
 
 @callback("alive")
@@ -122,7 +121,7 @@ async def lol(ult):
         parse = "html"
         als = in_alive.format(
             header,
-            f"{ultroid_version} [{HOSTED_ON}]",
+            ultroid_version,
             UltVer,
             pyver(),
             uptime,
@@ -136,12 +135,10 @@ async def lol(ult):
         als = (get_string("alive_1")).format(
             header,
             OWNER_NAME,
-            f"{ultroid_version} [{HOSTED_ON}]",
-            UltVer,
+            f"{ultroid_version}",
             uptime,
             pyver(),
             __version__,
-            kk,
         )
 
         if a := udB.get_key("ALIVE_EMOJI"):
