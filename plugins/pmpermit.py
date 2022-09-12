@@ -64,10 +64,10 @@ UND = get_string("pmperm_1")
 UNS = get_string("pmperm_2")
 NO_REPLY = get_string("pmperm_3")
 
-UNAPPROVED_MSG = "**Message From {ON}!**\n\n{UND}\n\nYou have {warn}/{twarn} warnings!"
+UNAPPROVED_MSG = "**Message From  {ON}!**\n\n{UND}\n\nYou have {warn}/{twarn} warnings!"
 if udB.get_key("PM_TEXT"):
     UNAPPROVED_MSG = (
-        "**Message From {ON}!**\n\n"
+        "**PMSecurity of {ON}!**\n\n"
         + udB.get_key("PM_TEXT")
         + "\n\nYou have {warn}/{twarn} warnings!"
     )
@@ -238,7 +238,7 @@ if udB.get_key("PMSETTING"):
             if user.id in LASTMSG:
                 prevmsg = LASTMSG[user.id]
                 if event.text != prevmsg:
-                    if "PMSecurity" in event.text or "**PMSecurity" in event.text:
+                    if "PMSecurity Robot" in event.text or "**PMSecurity Robot" in event.text:
                         return
                     await delete_pm_warn_msgs(user.id)
                     message_ = UNAPPROVED_MSG.format(
@@ -413,7 +413,7 @@ if udB.get_key("PMSETTING"):
                 await asst.edit_message(
                     int(udB.get_key("LOG_CHANNEL")),
                     _not_approved[user.id],
-                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved!</code>",
+                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
                     buttons=[
                         Button.inline("Disapprove PM", data=f"disapprove_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -423,7 +423,7 @@ if udB.get_key("PMSETTING"):
             except KeyError:
                 _not_approved[user.id] = await asst.send_message(
                     int(udB.get_key("LOG_CHANNEL")),
-                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved !</code>",
+                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
                     buttons=[
                         Button.inline("Disapprove PM", data=f"disapprove_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -642,7 +642,7 @@ async def apr_in(event):
         except BaseException:
             return await event.delete()
         await event.edit(
-            f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved !</code>",
+            f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
             buttons=[
                 [
                     Button.inline("Disapprove PM", data=f"disapprove_{uid}"),
