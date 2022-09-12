@@ -238,7 +238,7 @@ if udB.get_key("PMSETTING"):
             if user.id in LASTMSG:
                 prevmsg = LASTMSG[user.id]
                 if event.text != prevmsg:
-                    if "PMSecurity Robot" in event.text or "**PMSecurity Robot" in event.text:
+                    if "PMSecurity" in event.text or "**PMSecurity" in event.text:
                         return
                     await delete_pm_warn_msgs(user.id)
                     message_ = UNAPPROVED_MSG.format(
