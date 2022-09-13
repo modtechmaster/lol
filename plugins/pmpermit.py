@@ -413,7 +413,7 @@ if udB.get_key("PMSETTING"):
                 await asst.edit_message(
                     int(udB.get_key("LOG_CHANNEL")),
                     _not_approved[user.id],
-                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
+                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved To PM </code>",
                     buttons=[
                         Button.inline("Disapprove PM", data=f"disapprove_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -423,7 +423,7 @@ if udB.get_key("PMSETTING"):
             except KeyError:
                 _not_approved[user.id] = await asst.send_message(
                     int(udB.get_key("LOG_CHANNEL")),
-                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
+                    f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved To PM</code>",
                     buttons=[
                         Button.inline("Disapprove PM", data=f"disapprove_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -459,7 +459,7 @@ if udB.get_key("PMSETTING"):
                 await asst.edit_message(
                     int(udB.get_key("LOG_CHANNEL")),
                     _not_approved[user.id],
-                    f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM you.</code>",
+                    f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM </code>",
                     buttons=[
                         Button.inline("Approve PM", data=f"approve_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -469,7 +469,7 @@ if udB.get_key("PMSETTING"):
             except KeyError:
                 _not_approved[user.id] = await asst.send_message(
                     int(udB.get_key("LOG_CHANNEL")),
-                    f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM you.</code>",
+                    f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM .</code>",
                     buttons=[
                         Button.inline("Approve PM", data=f"approve_{user.id}"),
                         Button.inline("Block", data=f"block_{user.id}"),
@@ -642,7 +642,7 @@ async def apr_in(event):
         except BaseException:
             return await event.delete()
         await event.edit(
-            f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM you!</code>",
+            f"#APPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was approved to PM!</code>",
             buttons=[
                 [
                     Button.inline("Disapprove PM", data=f"disapprove_{uid}"),
@@ -680,7 +680,7 @@ async def disapr_in(event):
         except BaseException:
             return await event.delete()
         await event.edit(
-            f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM you!</code>",
+            f"#DISAPPROVED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was disapproved to PM!</code>",
             buttons=[
                 [
                     Button.inline("Approve PM", data=f"approve_{uid}"),
@@ -719,7 +719,7 @@ async def blck_in(event):
     except BaseException:
         return await event.delete()
     await event.edit(
-        f"BLOCKED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was blocked!</code>",
+        f"BLOCKED\n\n<b>{inline_mention(user, html=True)}</b> [<code>{user.id}</code>] <code>was blocked You !</code>",
         buttons=Button.inline("UnBlock", data=f"unblock_{uid}"),
         parse_mode="html",
     )
