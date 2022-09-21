@@ -159,7 +159,7 @@ wspr_4: "User {} Not Found\nSearch Again"
 wspr_5: "You Can't do this"
 
 # afk
-afk_1: "**𝓘 𝓐𝓜 𝓑𝓐𝓒𝓚 𝐎𝐍𝐋𝐈𝐍𝐄 🥰 **\n\n ɪ ᴡᴀꜱ ᴀᴡᴀʏ ꜰʀᴏᴍ ʏᴏᴜ 🥺  ~ `{}`"
+afk_1: "**𝐈 𝐀𝐌 𝐁𝐀𝐂𝐊 𝐎𝐍𝐋𝐈𝐍𝐄 🥰 **\n\n ɪ ᴡᴀꜱ ᴀᴡᴀʏ ꜰʀᴏᴍ ʏᴏᴜ 🥺  ~ `{}`"
 afk_2: "#AFK\nSet 𝕆𝔽𝕃𝕀ℕ𝔼 mode to False.\n ɪ ᴡᴀꜱ ᴏꜰʟɪɴᴇ ꜱɪɴᴄᴇ ~ `{}`"
 afk_3: "**ɪ'ᴍ ᴄᴜʀʀᴇɴᴛʟʏ 𝐎𝐅𝐋𝐈𝐍𝐄.**\nLast seen `{}` ago.\n\n**Reason:** `{}`"
 afk_4: "**ɪ'ᴍ ᴄᴜʀʀᴇɴᴛʟʏ 𝕆𝔽𝕃𝕀ℕ𝔼.**\n\n ʟᴀꜱᴛ ꜱᴇᴇɴ `{}` ago."
