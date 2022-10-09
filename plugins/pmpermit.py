@@ -446,7 +446,7 @@ if udB.get_key("PMSETTING"):
         if user.id in DEVLIST:
             return await eor(
                 e,
-                "`Lol, He is my Developer\nHe Can't Be DisApproved.`",
+                "`who are you \nyou Can't pm me .`",
             )
         if is_approved(user.id):
             disapprove_user(user.id)
