@@ -160,7 +160,7 @@ wspr_5: "You Can't do this"
 
 # afk
 afk_1: "** ɪ ᴀᴍ ʙᴀᴄᴋ ᴍʏ ᴠɪʀᴛᴜᴀʟ ᴡᴏʀʟᴅ 🥰 **\n\n ɪ ᴡᴀꜱ ᴀᴡᴀʏ ꜰʀᴏᴍ ʏᴏᴜ 🥺  `{}` min ago "
-afk_2: "#AFK\nSet 𝕆𝔽𝕃𝕀ℕ𝔼 mode to False.\n ɪ ᴡᴀꜱ ᴏꜰʟɪɴᴇ ꜱɪɴᴄᴇ ~ `{}  min `\n\n**ℝ𝕖𝕒𝕤𝕠𝕟 :** `{}`"
+afk_2: "#AFK\nSet 𝕆𝔽𝕃𝕀ℕ𝔼 mode to False.\n ɪ ᴡᴀꜱ ᴏꜰʟɪɴᴇ ꜱɪɴᴄᴇ ~ `{}  min ago`\n\n**ℝ𝕖𝕒𝕤𝕠𝕟 :** `{}`"
 afk_3: "**𝚜𝚘𝚛𝚛𝚢 , 🥺 ɪ'ᴍ ᴄᴜʀʀᴇɴᴛʟʏ 𝐎𝐅𝐋𝐈𝐍𝐄 💔 .**\nLast seen `{}` ago.\n\n**Reason:** `{}`"
 afk_4: "**𝚜𝚘𝚛𝚛𝚢 , 🥺 ɪ'ᴍ ᴄᴜʀʀᴇɴᴛʟʏ 𝕆𝔽𝕃𝕀ℕ𝔼  💔.**\n\n ʟᴀꜱᴛ ꜱᴇᴇɴ `{}` min ago."
 afk_5: "** 𝕀'𝕞 𝔾𝕠𝕚𝕟𝕘  🅾🅵🅻🅸🅽🅴  😔 😔.**\n\n**ℝ𝕖𝕒𝕤𝕠𝕟 :** `{}`"
@@ -542,7 +542,7 @@ games_6: "**• Starting Quiz in 5 secs.** \n**• Level :** {}\n**• Qs :** {}
 
 # callbackstuffs
 clst_1: "`Userbot dyno build in progress, please wait for it to complete.`"
-clst_2: "`Successfully Updated!\nRestarting, please wait...`"
+clst_2: "`Successfully updated and back virtual world!\nRestarting, please wait baby I am back soon...`"
 clst_3: "■ Generating Changelogs..."
 clst_4: "Something went wrong..."
 clst_5: "Done!"
