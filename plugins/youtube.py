@@ -1,117 +1,85 @@
-import asyncio
-import json
-import os
-import time
-import yt_dlp
+# Ultroid - UserBot
+# Copyright (C) 2021-2022 TeamUltroid
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
+"""
+✘ Commands Available -
 
-from telethon.tl.types import DocumentAttributeAudio
+• `{i}yta <(youtube/any) link>`
+   Download audio from the link.
 
-from . import *
+• `{i}ytv <(youtube/any) link>`
+   Download video  from the link.
+
+• `{i}ytsa <(youtube) search query>`
+   Search and download audio from youtube.
+
+• `{i}ytsv <(youtube) search query>`
+   Search and download video from youtube.
+"""
+from pyUltroid.fns.ytdl import download_yt, get_yt_link
+
+from . import get_string, requests, ultroid_cmd
 
 
-@hell_cmd(pattern="yt(a|v)(?:\s|$)([\s\S]*)")
-async def download_video(event):
-    lists = event.text.split(" ", 1)
-    if len(lists) != 2:
-        return await parse_error(event, "Give a YT link to download.")
-    url = lists[1].strip()
-    type_ = lists[0][3:4]
-    reply = await event.get_reply_message()
-    ForGo10God, HELL_USER, hell_mention = await client_id(event)
-    hell = await eor(event, "`Preparing to download...`")
-    if type_ == "a":
-        opts = song_opts
-        video = False
-        song = True
-    elif type_ == "v":
-        opts = video_opts
-        song = False
-        video = True
-    if song:
+@ultroid_cmd(
+    pattern="yt(a|v|sa|sv) ?(.*)",
+)
+async def download_from_youtube_(event):
+    ytd = {
+        "prefer_ffmpeg": True,
+        "addmetadata": True,
+        "geo-bypass": True,
+        "nocheckcertificate": True,
+    }
+    opt = event.pattern_match.group(1).strip()
+    xx = await event.eor(get_string("com_1"))
+    if opt == "a":
+        ytd["format"] = "bestaudio"
+        ytd["outtmpl"] = "%(id)s.m4a"
+        url = event.pattern_match.group(2)
+        if not url:
+            return await xx.eor(get_string("youtube_1"))
         try:
-            await hell.edit("**Fetching YT link...**")
-            with yt_dlp.YoutubeDL(opts) as ytdl:
-                ytdl_data = ytdl.extract_info(url)
-                audio_file = ytdl.prepare_filename(ytdl_data)
-                ytdl.process_info(ytdl_data)
-            c_time = time.time()
-            upload_txt = f"**••• Uploading Audio •••** \n\n__» {ytdl_data['title']}__\n__»»__ [{ytdl_data['uploader']}]({ytdl_data['uploader_url']})"
-            await hell.edit(upload_txt)
-            await event.client.send_file(
-                event.chat_id,
-                audio_file,
-                supports_streaming=True,
-                caption=f"**✘ Audio:** `{ytdl_data['title']}` \n**✘ Channel:** [{ytdl_data['uploader']}]({ytdl_data['uploader_url']}) \n**✘ Views:** `{ytdl_data['view_count']} views` \n\n**« ✘ »** {hell_mention}",
-                reply_to=reply,
-                attributes=[
-                    DocumentAttributeAudio(
-                        duration=int(ytdl_data["duration"]),
-                        title=str(ytdl_data["title"]),
-                        performer=perf,
-                    )
-                ],
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(
-                        d, t, hell, c_time, upload_txt, f"{ytdl_data['title']}.mp3"
-                    )
-                ),
-            )
-            os.remove(audio_file)
-            await hell.delete()
-        except Exception as e:
-            return await parse_error(hell, e)
-    elif video:
+            requests.get(url)
+        except BaseException:
+            return await xx.eor(get_string("youtube_2"))
+    elif opt == "v":
+        ytd["format"] = "best"
+        ytd["outtmpl"] = "%(id)s.mp4"
+        ytd["postprocessors"] = [{"key": "FFmpegMetadata"}]
+        url = event.pattern_match.group(2)
+        if not url:
+            return await xx.eor(get_string("youtube_3"))
         try:
-            await hell.edit("**Fetching YT link...**")
-            with yt_dlp.YoutubeDL(opts) as ydl:
-                vid_file = ydl.extract_info(url, download=True)
-            file_ = f"{vid_file['id']}.mp4"
-            c_time = time.time()
-            upload_txt = f"**••• Uploading Video •••** \n\n__» {vid_file['title']}__\n__»»__ [{vid_file['uploader']}]({vid_file['uploader_url']})"
-            await hell.edit(upload_txt)
-            await event.client.send_file(
-                event.chat_id,
-                open(file_, "rb"),
-                supports_streaming=True,
-                caption=f"**✘ Video:** `{vid_file['title']}` \n**✘ Channel:** [{vid_file['uploader']}]({vid_file['uploader_url']}) \n**✘ Views:** `{vid_file['view_count']} views` \n\n**« ✘ »** {hell_mention}",
-                reply_to=reply,
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(
-                        d, t, hell, c_time, upload_txt, f"{vid_file['title']}.mp4"
-                    )
-                ),
-            )
-            os.remove(file_)
-            await hell.delete()
-        except Exception as e:
-            await parse_error(hell, e)
-
-
-@hell_cmd(pattern="ytlink(?:\s|$)([\s\S]*)")
-async def hmm(event):
-    lists = event.text.split(" ", 1)
-    if len(lists) != 2:
-        return await parse_error(event, "Give some texts to search on Youtube.")
-    query = lists[1].strip()
-    hell = await eor(event, "`Processing...`")
-    try:
-        results = json.loads(Hell_YTS(query, max_results=7).to_json())
-    except KeyError:
-        return await eod(event, "Unable to find relevant search queries...")
-    output = f"**◈ Search Query:**\n`{query}`\n\n**◈ Results:**\n\n"
-    for i in results["videos"]:
-        output += f"⇝ __{i['title']}__\nhttps://www.youtube.com{i['url_suffix']}\n\n"
-    await hell.edit(output, link_preview=False)
-
-
-CmdHelp("youtube").add_command(
-    "yta", "<yt link>", "Extracts the audio from given youtube link and uploads it to telegram"
-).add_command(
-    "ytv", "<yt link>", "Extracts the video from given youtube link and uploads it to telegram"
-).add_command(
-    "ytlink", "<search keyword>", "Extracts 7 links from youtube based on the given search query"
-).add_info(
-    "YouTube Utilities"
-).add_warning(
-    "✅ Harmless Module."
-).add()
+            requests.get(url)
+        except BaseException:
+            return await xx.eor(get_string("youtube_4"))
+    elif opt == "sa":
+        ytd["format"] = "bestaudio"
+        ytd["outtmpl"] = "%(id)s.m4a"
+        try:
+            query = event.text.split(" ", 1)[1]
+        except IndexError:
+            return await xx.eor(get_string("youtube_5"))
+        url = get_yt_link(query)
+        if not url:
+            return await xx.edit(get_string("unspl_1"))
+        await xx.eor(get_string("youtube_6"))
+    elif opt == "sv":
+        ytd["format"] = "best"
+        ytd["outtmpl"] = "%(id)s.mp4"
+        ytd["postprocessors"] = [{"key": "FFmpegMetadata"}]
+        try:
+            query = event.text.split(" ", 1)[1]
+        except IndexError:
+            return await xx.eor(get_string("youtube_7"))
+        url = get_yt_link(query)
+        if not url:
+            return await xx.edit(get_string("unspl_1"))
+        await xx.eor(get_string("youtube_8"))
+    else:
+        return
+    await download_yt(xx, url, ytd)
