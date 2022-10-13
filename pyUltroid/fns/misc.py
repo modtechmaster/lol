@@ -165,8 +165,8 @@ async def allcmds(event, telegraph):
         for zz in LIST[z]:
             txt += HNDLR + zz + "\n"
         txt += "\n\n"
-    t = telegraph.create_page(title="ᴅᴀʀᴋ ᴍᴏᴏɴ ᴜꜱᴇʀʙᴏᴛ Cmds", content=[txt])
-    await eor(event, f"ᴜꜱᴇʀʙᴏᴛ All ★ Cmds : [Click Here]({t['url']})", link_preview=False)
+    t = telegraph.create_page(title="ᴅᴀʀᴋ ᴍᴏᴏɴ ᴜꜱᴇʀʙᴏᴛ IF you have any problm DM @itzyournil_bot", content=[txt])
+    await eor(event, f"★★ READ ᴜꜱᴇʀʙᴏᴛ All ★★ Cmds : [Click Here]({t['url']})", link_preview=False)
 
 
 async def ReTrieveFile(input_file_name):
