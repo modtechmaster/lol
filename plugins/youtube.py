@@ -82,4 +82,4 @@ async def download_from_youtube_(event):
         await xx.eor(get_string("youtube_8"))
     else:
         return
-    await download_yt(xx, url, ytv)
+    await download_yt(xx, url, ytd)
