@@ -165,7 +165,7 @@ async def allcmds(event, telegraph):
         for zz in LIST[z]:
             txt += HNDLR + zz + "\n"
         txt += "\n\n"
-    t = telegraph.create_page(title="★★ ᴅᴀʀᴋ ᴍᴏᴏɴ ᴜꜱᴇʀʙᴏᴛ if you have any problem DM @itzyournil_bot", content=[txt])
+    t = telegraph.create_page(title="★ Uʟᴛʀᴏɪᴅ✘Sᴜᴘʀᴇᴍᴀᴄʏ 🥰", content=[txt])
     await eor(event, f"★★ READ ᴜꜱᴇʀʙᴏᴛ all cmds : [Click Here]({t['url']})", link_preview=False)
 
 
