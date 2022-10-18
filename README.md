@@ -1,1 +1,1 @@
- <img src="https://telegra.ph/file/f3aed2f6f2d4a1ad7831d.png" alt="Userge">
+ <img src="https://telegra.ph/file/d1cd097776b3fd3fe283a.png" alt="Userge">
