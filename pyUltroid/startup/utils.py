@@ -40,6 +40,7 @@ def load_addons(plugin_name):
     mod.telebot = ultroid_bot
     mod.jarvis = ultroid_bot
     mod.friday = ultroid_bot
+    mod.catub = ultroid_bot
     mod.eod = eod
     mod.edit_delete = eod
     mod.LOGS = LOGS
@@ -62,6 +63,7 @@ def load_addons(plugin_name):
     mod.HELP = HELP.get("Addons", {})
     mod.CMD_HELP = HELP.get("Addons", {})
     modules["ub"] = xxx
+    modules["catub"] = xxx
     modules["var"] = xxx
     modules["support"] = xxx
     modules["userbot"] = xxx
