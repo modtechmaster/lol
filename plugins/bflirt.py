@@ -9,7 +9,8 @@
 
 from random import choice
 from asyncio import sleep
-
+from . import *
+from . import ultroid_cmd
 lst = [
     "আপনার প্রতি আমার ভালবাসা ডায়রিয়ার মতো, আমি কেবল এটি ধরে রাখতে পারি না।",
     "তোমাকে ছাড়া জীবন হ’ল ভাঙা পেন্সিলের মতো … অর্থহীন।.",
