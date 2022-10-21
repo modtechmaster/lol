@@ -69,7 +69,7 @@ async def _(event):
     name = OWNER_NAME
     ok = ""
     mybio = str(ultroid_bot.me.id) + "01"
-    bio = "Error : Bio Lost"
+    bio = "Educational Purpose Account. I don’t promote illegal Activities."
     chc = udB.get_key(mybio)
     if chc:
         bio = chc
