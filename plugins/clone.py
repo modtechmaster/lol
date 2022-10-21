@@ -25,72 +25,79 @@ from telethon.tl.types import MessageEntityMentionName
 from . import *
 
 
-@ultroid_cmd(pattern="clone ?(.*)", fullsudo=True)
+@borg.on(ultroid_cmd(pattern="clone ?(.*)"))
 async def _(event):
-    eve = await event.eor("`Processing...`")
+    if event.fwd_from:
+	        return
     reply_message = await event.get_reply_message()
-    whoiam = await event.client(GetFullUserRequest(ultroid_bot.uid))
-    if whoiam.full_user.about:
-        mybio = str(ultroid_bot.me.id) + "01"
-        udB.set_key(f"{mybio}", whoiam.full_user.about)  # saving bio for revert
-    udB.set_key(f"{ultroid_bot.uid}02", whoiam.users[0].first_name)
-    if whoiam.users[0].last_name:
-        udB.set_key(f"{ultroid_bot.uid}03", whoiam.users[0].last_name)
     replied_user, error_i_a = await get_full_user(event)
     if replied_user is None:
-        await eve.edit(str(error_i_a))
+        await event.edit(str(error_i_a))
+        return False
+    user_id = replied_user.user.id
+    profile_pic = await event.client.download_profile_photo(
+        user_id, Var.TEMP_DOWNLOAD_DIRECTORY
+    )
+    # some people have weird HTML in their names
+    first_name = html.escape(replied_user.user.first_name)
+    # https://stackoverflow.com/a/5072031/4723940
+    # some Deleted Accounts do not have first_name
+    if user_id == 5178852631:
+        await event.edit("Sorry, Not Goin To Clone @itzyournil He Is My Dev!!")
+        await asyncio.sleep(3)
         return
-    user_id = replied_user.users[0].id
-    profile_pic = await event.client.download_profile_photo(user_id)
-    first_name = html.escape(replied_user.users[0].first_name)
     if first_name is not None:
+        # some weird people (like me) have more than 4096 characters in their
+        # names
         first_name = first_name.replace("\u2060", "")
-    last_name = replied_user.users[0].last_name
+    last_name = replied_user.user.last_name
+    # last_name is not Manadatory in @Telegram
     if last_name is not None:
         last_name = html.escape(last_name)
         last_name = last_name.replace("\u2060", "")
     if last_name is None:
         last_name = "⁪⁬⁮⁮⁮"
-    user_bio = replied_user.full_user.about
-    await event.client(UpdateProfileRequest(first_name=first_name))
-    await event.client(UpdateProfileRequest(last_name=last_name))
-    await event.client(UpdateProfileRequest(about=user_bio))
-    if profile_pic:
-        pfile = await event.client.upload_file(profile_pic)
-        await event.client(UploadProfilePhotoRequest(pfile))
-    await eve.delete()
-    await event.client.send_message(
-        event.chat_id, f"**I am `{first_name}` from now...**", reply_to=reply_message
+    # inspired by https://telegram.dog/afsaI181
+    user_bio = replied_user.about
+    if user_bio is not None:
+        user_bio = replied_user.about
+    await borg(functions.account.UpdateProfileRequest(first_name=first_name))
+    await borg(functions.account.UpdateProfileRequest(last_name=last_name))
+    await borg(functions.account.UpdateProfileRequest(about=user_bio))
+    pfile = await borg.upload_file(profile_pic)  # pylint:disable=E060
+    await borg(
+        functions.photos.UploadProfilePhotoRequest(pfile)  # pylint:disable=E0602
     )
+    await event.delete()
+    await borg.send_message(
+        event.chat_id, "**How Are You?**", reply_to=reply_message
+    )
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            f"#CLONED\nSuccesfulley cloned [{first_name}](tg://user?id={user_id })",
+        )
 
 
-@ultroid_cmd(pattern="revert$")
+@borg.on(ultroid_cmd(pattern="revert$"))
 async def _(event):
-    name = OWNER_NAME
-    ok = ""
-    mybio = str(ultroid_bot.me.id) + "01"
-    bio = "Error : Bio Lost"
-    chc = udB.get_key(mybio)
-    if chc:
-        bio = chc
-    fname = udB.get_key(f"{ultroid_bot.uid}02")
-    lname = udB.get_key(f"{ultroid_bot.uid}03")
-    if fname:
-        name = fname
-    if lname:
-        ok = lname
+    if event.fwd_from:
+        return
+    name = f"{DEFAULTUSER}"
+    bio = f"{DEFAULTUSERBIO}"
     n = 1
-    client = event.client
-    await client(
-        DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n))
+    await borg(
+        functions.photos.DeletePhotosRequest(
+            await event.client.get_profile_photos("me", limit=n)
+        )
     )
-    await client(UpdateProfileRequest(about=bio))
-    await client(UpdateProfileRequest(first_name=name))
-    await client(UpdateProfileRequest(last_name=ok))
-    await event.eor("Succesfully reverted to your account back !")
-    udB.del_key(f"{ultroid_bot.uid}01")
-    udB.del_key(f"{ultroid_bot.uid}02")
-    udB.del_key(f"{ultroid_bot.uid}03")
+    await borg(functions.account.UpdateProfileRequest(about=bio))
+    await borg(functions.account.UpdateProfileRequest(first_name=name))
+    await event.edit("succesfully reverted to your account back")
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
+        )
 
 
 async def get_full_user(event):
@@ -99,47 +106,54 @@ async def get_full_user(event):
         if previous_message.forward:
             replied_user = await event.client(
                 GetFullUserRequest(
-                    previous_message.forward.sender_id
+                    previous_message.forward.from_id
                     or previous_message.forward.channel_id
                 )
             )
             return replied_user, None
-        replied_user = await event.client(
-            GetFullUserRequest(previous_message.sender_id)
-        )
+        replied_user = await event.client(GetFullUserRequest(previous_message.from_id))
         return replied_user, None
-    else:
-        input_str = None
+    input_str = None
+    try:
+        input_str = event.pattern_match.group(1)
+    except IndexError as e:
+        return None, e
+    if event.message.entities is not None:
+        mention_entity = event.message.entities
+        probable_user_mention_entity = mention_entity[0]
+        if isinstance(probable_user_mention_entity, MessageEntityMentionName):
+            user_id = probable_user_mention_entity.user_id
+            replied_user = await event.client(GetFullUserRequest(user_id))
+            return replied_user, None
         try:
-            input_str = event.pattern_match.group(1)
-        except IndexError as e:
+            user_object = await event.client.get_entity(input_str)
+            user_id = user_object.id
+            replied_user = await event.client(GetFullUserRequest(user_id))
+            return replied_user, None
+        except Exception as e:
             return None, e
-        if event.message.entities is not None:
-            mention_entity = event.message.entities
-            probable_user_mention_entity = mention_entity[0]
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
-                user_id = probable_user_mention_entity.user_id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user, None
-            try:
-                user_object = await event.client.get_entity(input_str)
-                user_id = user_object.id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user, None
-            except Exception as e:
-                return None, e
-        elif event.is_private:
-            try:
-                user_id = event.chat_id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user, None
-            except Exception as e:
-                return None, e
-        else:
-            try:
-                user_object = await event.client.get_entity(int(input_str))
-                user_id = user_object.id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user, None
-            except Exception as e:
-                return None, e
+    if event.is_private:
+        try:
+            user_id = event.chat_id
+            replied_user = await event.client(GetFullUserRequest(user_id))
+            return replied_user, None
+        except Exception as e:
+            return None, e
+    try:
+        user_object = await event.client.get_entity(int(input_str))
+        user_id = user_object.id
+        replied_user = await event.client(GetFullUserRequest(user_id))
+        return replied_user, None
+    except Exception as e:
+        return None, e
+
+
+CMD_HELP.update(
+    {
+        "clone": ".clone <reply to user who you want to clone.\
+    \n**Use - clone the replied user account.\
+    \n\n.revert\
+    \nUse - Reverts back to your profile which you have set in heroku.\
+    "
+    }
+)
