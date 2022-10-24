@@ -14,6 +14,7 @@ google-api-python-client
 htmlwebshot
 lottie
 numpy>=1.21.2
+nekos.py
 oauth2client
 opencv-python-headless
 pillow>=7.0.0
