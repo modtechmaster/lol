@@ -6,6 +6,7 @@
 # <https://github.com/TeamUltroid/pyUltroid/blob/main/LICENSE>.
 
 import sys
+from decouple import config
 
 try:
     from dotenv import load_dotenv
