@@ -7,7 +7,6 @@
 
 import sys
 
-
 try:
     from dotenv import load_dotenv
 
