@@ -7,7 +7,6 @@
 
 import sys
 
-from decouple import config
 
 try:
     from dotenv import load_dotenv
