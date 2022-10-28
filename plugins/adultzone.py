@@ -1,5 +1,5 @@
 #Kang With Credits Developed By @P_4_PEEYUSH
-""""
+"""""
 Ported For Ultroid BY @moon_knight69 & @itzyournil
 
 Command Available:
@@ -7,7 +7,8 @@ Command Available:
 .xxlong
 .picx
 .les 
-""""
+
+"""""
 
 
 from telethon import events
