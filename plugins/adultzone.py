@@ -1,12 +1,21 @@
 #Kang With Credits Developed By @P_4_PEEYUSH
-#Ported For Ultroid BY @moon_knight69
+""""
+Ported For Ultroid BY @moon_knight69 & @itzyournil
+
+Command Available:
+.xxshorts
+.xxlong
+.picx
+.les 
+""""
+
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
 from . import *
+from . import ultroid_cmd
 
-@borg.on(admin_cmd(pattern="xxshort?(.*)"))
+@ultroid_cmd(pattern="xxshort?(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -31,7 +40,7 @@ async def _(event):
             await event.client.send_file(event.chat_id, response.message)
 
 
-@borg.on(admin_cmd(pattern="xxlong?(.*)"))
+@ultroid_cmd(pattern="xxlong?(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -54,7 +63,7 @@ async def _(event):
         else:
             await event.delete()
             await event.client.send_file(event.chat_id, response.message)
-@borg.on(admin_cmd(pattern="xnxx?(.*)"))
+@ultroid_cmd(pattern="xnxx?(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -79,7 +88,7 @@ async def _(event):
             await event.client.send_file(event.chat_id, response.message)
 
 
-@borg.on(admin_cmd(pattern="picx?(.*)"))
+@ultroid_cmd(pattern="picx?(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -104,7 +113,7 @@ async def _(event):
             await event.client.send_file(event.chat_id, response.message)
 
 
-@borg.on(admin_cmd(pattern="les?(.*)"))
+@ultroid_cmd(pattern="les?(.*)")
 async def _(event):
     if event.fwd_from:
         return
