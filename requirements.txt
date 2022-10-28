@@ -3,3 +3,4 @@
 https://github.com/New-dev0/Telethon/archive/diamond.zip
 python-decouple
 python-dotenv
+https://github.com/desvhu-333/dump/raw/main/google_trans_new.zip
