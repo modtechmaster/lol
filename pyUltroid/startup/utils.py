@@ -40,7 +40,7 @@ def load_addons(plugin_name):
     mod.telebot = ultroid_bot
     mod.jarvis = ultroid_bot
     mod.friday = ultroid_bot
-    mod.userbot = ultroid_bot
+    mod.catuserbot = ultroid_bot
     mod.eod = eod
     mod.edit_delete = eod
     mod.LOGS = LOGS
@@ -69,14 +69,12 @@ def load_addons(plugin_name):
     modules["userbot"] = xxx
     modules["telebot"] = xxx
     modules["fridaybot"] = xxx
-    modules["userbot.helpers"] = xxx
-    modules["userbot.core"] = xxx
-    modules["userbot.sql_helper"] = xxx
     modules["uniborg.util"] = xxx
     modules["telebot.utils"] = xxx
     modules["userbot.utils"] = xxx
     modules["userbot.events"] = xxx
     modules["userbot.config"] = xxx
+    modules["catuserbot.utils.pluginmanager"] = xxx
     modules["fridaybot.utils"] = xxx
     modules["fridaybot.Config"] = xxx
     modules["userbot.uniborgConfig"] = xxx
