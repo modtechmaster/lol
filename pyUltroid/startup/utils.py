@@ -69,6 +69,9 @@ def load_addons(plugin_name):
     modules["userbot"] = xxx
     modules["telebot"] = xxx
     modules["fridaybot"] = xxx
+    modules["catub.helpers"] = xxx
+    modules["catub.core"] = xxx
+    modules["catub.sql_helper"] = xxx
     modules["uniborg.util"] = xxx
     modules["telebot.utils"] = xxx
     modules["userbot.utils"] = xxx
