@@ -409,7 +409,7 @@ async def get_paste(data: str, extension: str = "txt"):
 async def get_chatbot_reply(message):
     from .. import ultroid_bot
 
-    chatbot_base = "https://kukiapi.xyz/api/apikey=ULTROIDUSERBOT/Ultroid/{}/message={}"
+    chatbot_base = "https://devman.kuki.ai/api/apikey=ade62ee20ef1626ad9a1129c6ed7621057b0ae28e011d93b2a725c9f1370a386/{}/message={}"
     req_link = chatbot_base.format(
         ultroid_bot.me.first_name or "ultroid user",
         message,
