@@ -3,7 +3,7 @@ plugin for ultroid by @moon_knight69 and @itzyournil and our sir @baba_riddle
 ✘ Commands Available
 ✘ bangla গালি  (bangla)
 
-> CMD: `{i}bgali`
+> CMD: `{i}gandu`
 """
 
 from telethon import events
@@ -110,7 +110,7 @@ RUNSREACTS = [
 " কিরে বোদায় চো*দা ",
 ]
 
-@ultroid_cmd(pattern="bgali")
+@ultroid_cmd(pattern="gandu")
 async def _(event):
     if event.fwd_from:
          return
