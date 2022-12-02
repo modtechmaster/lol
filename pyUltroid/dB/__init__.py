@@ -10,12 +10,7 @@ if not run_as_module:
 from .. import *
 
 DEVLIST = [
-    5178852631,  # @itzyournil
-    1954747676,  # @Dark_Nil
-   5718648078,  # @moon_knight69
-    611816596,  # @Arnab431
-    1318486004,  # @sppidy
-    803243487,  # @hellboi_atul
+    5195866238,  # @md_noman_khan
 ]
 
 ULTROID_IMAGES = [
